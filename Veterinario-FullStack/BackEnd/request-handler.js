@@ -20,6 +20,17 @@ module.exports = (req, res) => {
   console.log('req metodo: ',req.method);
   const metodo = req.method;
 
+  // Doy permisos de Cors 
+  res.setHeader("Access-Control-Allow-Origin","*");
+  res.setHeader("Access-Control-Request-Methods","*");
+
+  // 3.5.1
+  if(metodo === "OPTIONS"){
+    res.writeHead(200);
+    res.end();
+    return;
+  }
+
   // 3.6 request header
   const {headers} = req;
   console.log('req header: ', {headers});
