@@ -1,6 +1,6 @@
 const recursos = require('./recursos');
 const mascotas = require('./Rutas/mascotas');
-const mascotas = require('./Rutas/duenos');
+const duenos = require('./Rutas/duenos');
 const veterinarias = require('./Rutas/veterinarias');
 const consultas = require('./Rutas/consultas');
 

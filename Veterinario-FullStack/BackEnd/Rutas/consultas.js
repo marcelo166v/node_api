@@ -20,8 +20,9 @@ module.exports = function consultasHandler(consultas){
        PUT:(data,callback) => { // Handler
          if(typeof(data.indice) !== "undefined"){
              if(consultas[data.indice]){
-                consultas[data.indice] = data.payload;
-                callback(200,data.payload);
+                const {fechaCreacion} = consultas[data.indice];
+                consultas[data.indice] = {...data.payload,fechaCreacion,fechaEdicion: new Date()};
+                callback(200,consultas[data.indice]);
              }
              else
              {
