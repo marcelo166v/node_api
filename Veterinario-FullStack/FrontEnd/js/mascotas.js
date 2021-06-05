@@ -18,7 +18,9 @@ async function listar(){
             <td>${index}</td>
             <td>${mascota.tipo}</td>
             <td>${mascota.nombre}</td>
-            <td>${mascota.dueno}</td><tr> `
+            <td>${mascota.dueno}</td>
+            <td><button type="button" class="btn btn-primary">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+        <tr> `
         ).join("");
 
         $("#bodyMascotas").append(htmlMascotas);
@@ -29,8 +31,3 @@ async function listar(){
     }
 }
 
-function solicitarMascotas(){
-    // El segundo parametro es para se pueda conectar al servidor, 
-    //ya que el sitio y la api no comparten servidor
-    
-}
