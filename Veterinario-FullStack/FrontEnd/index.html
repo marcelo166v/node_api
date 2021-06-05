@@ -4,7 +4,8 @@
         <!-- Latest compiled and minified CSS -->
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="/Veterinario-FullStack/FrontEnd/css/style.css"  />
     </head>
     <body>
         <div class="container">
@@ -66,25 +67,33 @@
                     <div class="modal-body">
                         
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="tipoMascota">
+                                <option>Perro</option>
+                                <option>Gato</option>
+                                <option>Tortuga</option>
+                                <option>Raton</option>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Dueño</label>
+                            <select class="form-select" id="dueno">
+                                <option>Marcelo</option>
+                                <option>Juan</option>
+                                <option>Alberto</option>
+                                <option>Patricio</option>
+                            </select>
                         </div>
-                            
-                        
+            
                     </div>
                 
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Grabar</button>
                     </div>
                 </form>
               </div>

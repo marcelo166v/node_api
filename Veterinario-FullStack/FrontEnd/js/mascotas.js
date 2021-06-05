@@ -1,6 +1,7 @@
 //const mascotas = require("../../BackEnd/Rutas/mascotas");
 
 let mascotas = [];
+const bodyMascotas = $("#bodyMascotas")
 
 listar();
 
@@ -19,11 +20,11 @@ async function listar(){
             <td>${mascota.tipo}</td>
             <td>${mascota.nombre}</td>
             <td>${mascota.dueno}</td>
-            <td><button type="button" class="btn btn-primary">Editar</button><button type="button" class="btn btn-danger">Eliminar</button></td>
+            <td><button type="button" class="btn btn-primary"><i class="fas fa-edit"></i>Editar</button><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>Eliminar</button></td>
         <tr> `
         ).join("");
 
-        $("#bodyMascotas").append(htmlMascotas);
+        bodyMascotas.append(htmlMascotas);
 
     }
     catch(error){
