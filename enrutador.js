@@ -1,6 +1,8 @@
 const recursos = require('./recursos');
 const mascotas = require('./Rutas/mascotas');
+const mascotas = require('./Rutas/duenos');
 const veterinarias = require('./Rutas/veterinarias');
+const consultas = require('./Rutas/consultas');
 
 module.exports = {
     ruta: (data,callback) => { // Handler
@@ -10,7 +12,15 @@ module.exports = {
     noEncontrada: (data,callback) => {
       callback(404, {mesaje: 'no encontrada'})
     },
-    veterinarias: veterinarias  (recursos.veterinarias),
+    veterinarias: veterinarias(recursos.veterinarias),
+    noEncontrada: (data,callback) => {
+      callback(404, {mesaje: 'no encontrada'})
+    },
+    duenos: duenos(recursos.duenos),
+    noEncontrada: (data,callback) => {
+      callback(404, {mesaje: 'no encontrada'})
+    },
+    consultas: consultas(recursos.consultas),
     noEncontrada: (data,callback) => {
       callback(404, {mesaje: 'no encontrada'})
     }
