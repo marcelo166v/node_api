@@ -1,7 +1,7 @@
 //const mascotas = require("../../BackEnd/Rutas/mascotas");
 
 let mascotas = [];
-const bodyMascotas = $("#bodyMascotas")
+const bodyMascotas = $("#bodyMascotas");
 const form = document.getElementById("form");
 const tipo = document.getElementById("tipoMascota");
 const nombre = document.getElementById("nombre");
