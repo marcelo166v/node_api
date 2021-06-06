@@ -31,8 +31,8 @@ module.exports = function veterinariasHandler(veterinarias){
        },
        DELETE:(data,callback) => { // Handler
          if(typeof(data.indice) !== "undefined"){
-             mascotas = mascotas.filter((_mascota,_indice) => _indice != data.indice);
-             callback(200,mascotas);
+             veterinarias = veterinarias.filter((_veterinaria,_indice) => _indice != data.indice);
+             callback(200,veterinarias);
          }else{
              callback(400, {mesaje: 'no se esta enviando el indice'})
          }
