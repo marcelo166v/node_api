@@ -6,6 +6,7 @@ const form = document.getElementById("form");
 const tipo = document.getElementById("tipoMascota");
 const nombre = document.getElementById("nombre");
 const dueno = document.getElementById("dueno");
+const btnGuardar = document.getElementById("btn-guardar");
 const url = "http://localhost:5080/mascotas";
 
 listar();
@@ -80,31 +81,36 @@ function editar(evento){
     console.log("indice editar",indice);
 }
 
-function enviarDatos(evento){
-    evento.preventDefault();
-    const mascota ={
-        tipo: tipo.value,
-        nombre: nombre.value,
-        dueno: dueno.value,
-    }  
-
-    grabar(mascota);
-
-}
-
-async function grabar(mascota){
+async function enviarDatos(evento){
     try
     {
-        const respuesta = await fetch('http://localhost:5080/mascotas', {node:"cors"});
-        const mascotasServer = await respuesta.json();
-        if(Array.isArray(mascotasServer) && mascotasServer.length > 0){
-           listar();
+        evento.preventDefault();
+        const mascota ={
+            tipo: tipo.value,
+            nombre: nombre.value,
+            dueno: dueno.value,
+        }  
+        const accion = "agregar";
+        let urlEnvio = url;
+        let method = (accion == "agregar" ? "POST" : "PUT");
+        
+        const respuesta = await fetch(urlEnvio, {
+            method: method,
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(mascota)
+        });
+        if (respuesta.ok) {
+            listar();
+            resetModal();
         }
+    } catch (error) {
+    console.log({ error });
+    $(".alert").show();
     }
-    catch(error){
-        throw error;
-    }
-}
+};
 
-form.onsubmit = enviarDatos;
+
+btnGuardar.onclick = enviarDatos;
 
