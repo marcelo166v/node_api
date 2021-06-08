@@ -1,7 +1,7 @@
 //const mascotas = require("../../BackEnd/Rutas/mascotas");
 
 let mascotas = [];
-const bodyMascotas = $("#bodyMascotas");
+const bodyMascotas = document.getElementById("bodyMascotas");
 const form = document.getElementById("form");
 const tipo = document.getElementById("tipoMascota");
 const nombre = document.getElementById("nombre");
@@ -33,7 +33,7 @@ async function listar(){
         </tr>`
         ).join("");
 
-        bodyMascotas.append(htmlMascotas);
+        bodyMascotas.innerHTML = htmlMascotas;
         
         // Evento para editar
         Array.from(document.getElementsByClassName('editar')).forEach(
@@ -84,7 +84,15 @@ function editar(evento){
 async function enviarDatos(evento){
     try
     {
+        // Valido form con bootstrap
         evento.preventDefault();
+        if (!form.checkValidity()) {
+            evento.preventDefault()
+            evento.stopPropagation()
+            form.classList.add('was-validated')
+            return false;
+        }
+        
         const mascota ={
             tipo: tipo.value,
             nombre: nombre.value,
@@ -106,8 +114,8 @@ async function enviarDatos(evento){
             resetModal();
         }
     } catch (error) {
-    console.log({ error });
-    $(".alert").show();
+        console.log({ error });
+        $(".alert").show();
     }
 };
 
