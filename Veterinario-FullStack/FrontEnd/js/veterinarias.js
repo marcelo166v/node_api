@@ -1,5 +1,5 @@
 let veterinarias = [];
-const bodyVeterinarias = $("#bodyVeterinarias");
+const bodyVeterinarias = document.getElementById("#bodyVeterinarias");
 const url = "http://localhost:5080/veterinarias";
 
 
@@ -25,7 +25,7 @@ async function listar(){
         <tr> `
         ).join("");
 
-        bodyVeterinarias.append(htmlVeterinarias);
+        bodyVeterinarias.innerHTML =htmlVeterinarias;
 
         // eventos para los botones de eliminar y editar
         // Evento para editar
@@ -68,7 +68,7 @@ function eliminar(index) {
 }
 
 function resetModal(){
-
+    
 }
 
 function editar(evento){
