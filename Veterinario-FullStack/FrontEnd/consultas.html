@@ -53,6 +53,53 @@
             </table>
         </div>
 
+         <!--Modal-->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form id="form" class="needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nueva mascota</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                
+                    <div class="modal-body">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="tipoMascota">
+                                <option>Perro</option>
+                                <option>Gato</option>
+                                <option>Tortuga</option>
+                                <option>Raton</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" >Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Dueño</label>
+                            <select class="form-select" id="dueno">
+                                <option>Marcelo</option>
+                                <option>Juan</option>
+                                <option>Alberto</option>
+                                <option>Patricio</option>
+                            </select>
+                        </div>
+            
+                    </div>
+                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" id="btn-guardar" class="btn btn-primary">Grabar</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
+
     </body>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/Veterinario-FullStack/FrontEnd/js/consultas.js"></script>

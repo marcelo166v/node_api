@@ -7,6 +7,7 @@ const tipo = document.getElementById("tipoMascota");
 const nombre = document.getElementById("nombre");
 const dueno = document.getElementById("dueno");
 const btnGuardar = document.getElementById("btn-guardar");
+const modal = document.getElementById("exampleModal");
 const url = "http://localhost:5080/mascotas";
 
 listar();
@@ -73,7 +74,9 @@ function eliminar(index) {
 }
 
 function resetModal(){
-
+    nombre.value = "Perro";
+    tipo.value = "";
+    dueno.value = "Marcelo";
 }
 
 function editar(evento){
@@ -119,6 +122,9 @@ async function enviarDatos(evento){
     }
 };
 
+modal.addEventListener('hidden.bs.modal', function (event) {
+    resetModal();
+})
 
 btnGuardar.onclick = enviarDatos;
 
