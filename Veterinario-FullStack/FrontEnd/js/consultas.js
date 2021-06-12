@@ -1,12 +1,16 @@
 let consultas = [];
+let mascotas =[];
+let duenos = [];
 const bodyConsultas = document.getElementById("bodyConsultas");
 const form = document.getElementById("form");
-//const tipo = document.getElementById("tipoMascota");
-//const nombre = document.getElementById("nombre");
-//const dueno = document.getElementById("dueno");
+const tipo = document.getElementById("mascota");
+const nombre = document.getElementById("nombre");
+const dueno = document.getElementById("dueno");
 //const btnGuardar = document.getElementById("btn-guardar");
 const modal = document.getElementById("exampleModal");
 const url = "http://localhost:5080/consultas";
+const mascota = document.getElementById("mascotas");
+
 
 listar();
 
@@ -14,7 +18,7 @@ async function listar(){
     
     try
     {
-        const respuesta = await fetch('http://localhost:5080/consultas', {node:"cors"});
+        const respuesta = await fetch(`${url}`, {node:"cors"});
         const consultasServer = await respuesta.json();
         if(Array.isArray(consultasServer) && consultasServer.length > 0){
             consultas = consultasServer;
@@ -34,6 +38,10 @@ async function listar(){
         ).join("");
 
         bodyConsultas.innerHTML = htmlConsultas;
+
+        listarMascotas();
+
+        listarDuenos();
         
         // Evento para editar
        /*  Array.from(document.getElementsByClassName('editar')).forEach(
@@ -53,6 +61,77 @@ async function listar(){
         throw error;
     }
 }
+
+async function listarMascotas(){
+    
+    try
+    {
+        const respuesta = await fetch('http://localhost:5080/mascotas', {node:"cors"});
+        const mascotasServer = await respuesta.json();
+        if(Array.isArray(mascotasServer) && mascotasServer.length > 0){
+            mascotas = mascotasServer;
+        }
+        
+        const opionesMascotas = mascotas.map((mascota,indice) => `
+            <option value=${indice}>${mascota.nombre}</option>`
+        ).join("");
+
+        mascota.innerHTML = opionesMascotas;
+
+        // Evento para editar
+       /*  Array.from(document.getElementsByClassName('editar')).forEach(
+            (botonEditar) => {
+                botonEditar.onclick = editar;
+            }
+        ); */
+
+        // Evento para eliminar
+        // Array.from(document.getElementsByClassName('eliminar')).forEach(
+        //     (botonEliminar,index) => {
+        //         botonEliminar.onclick = eliminar(index);
+        //     }
+        // );
+    }
+    catch(error){
+        throw error;
+    }
+}
+
+async function listarDuenos(){
+    
+    try
+    {
+        const respuesta = await fetch('http://localhost:5080/duenos', {node:"cors"});
+        const duenosServer = await respuesta.json();
+        if(Array.isArray(duenosServer) && duenosServer.length > 0){
+            duenos = duenosServer;
+        }
+        
+        const opionesDuenos = duenos.map((dueno,indice) => `
+            <option value=${indice}>${dueno.nombre}</option>`
+        ).join("");
+
+        dueno.innerHTML = opionesDuenos;
+        
+        // Evento para editar
+       /*  Array.from(document.getElementsByClassName('editar')).forEach(
+            (botonEditar) => {
+                botonEditar.onclick = editar;
+            }
+        ); */
+
+        // Evento para eliminar
+        // Array.from(document.getElementsByClassName('eliminar')).forEach(
+        //     (botonEliminar,index) => {
+        //         botonEliminar.onclick = eliminar(index);
+        //     }
+        // );
+    }
+    catch(error){
+        throw error;
+    }
+}
+
 
 function eliminar(index) {
     const urlEnvio = `${url}/${index}`;
@@ -80,7 +159,7 @@ function resetModal(){
 
 function editar(evento){
     var indice = evento.target.dataset.indice;
-    console.log("indice editar",indice);
+    
 }
 
 async function enviarDatos(evento){

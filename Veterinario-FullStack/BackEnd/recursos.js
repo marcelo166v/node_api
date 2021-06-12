@@ -14,8 +14,8 @@ module.exports =  {
       duenos:
       [
         {nombre:"marcelo", apellido:"perez" ,documento: "20304252228"},
-        {nombre:"marcelo", apellido:"villani", documento: "20304252228"},
-        {nombre:"marcelo", apellido:"gonzalez", documento: "20304252228"},
+        {nombre:"horacio", apellido:"villani", documento: "20304252228"},
+        {nombre:"pedro", apellido:"gonzalez", documento: "20304252228"},
       ],
       consultas:
       [
