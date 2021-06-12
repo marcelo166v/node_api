@@ -1,6 +1,10 @@
 let veterinarias = [];
-const bodyVeterinarias = document.getElementById("#bodyVeterinarias");
+const bodyVeterinarias = document.getElementById("bodyVeterinarias");
 const url = "http://localhost:5080/veterinarias";
+const nombre = document.getElementById("nombre");
+const apellido = document.getElementById("apellido");
+const documento = document.getElementById("documento");
+const pais = document.getElementById("pais");
 
 
 listar();
@@ -21,7 +25,10 @@ async function listar(){
             <td>${veterinaria.apellido}</td>
             <td>${veterinaria.pais}</td>
             <td>${veterinaria.documento}</td>
-            <td><button type="button" class="btn btn-primary editar"><i class="fas fa-edit"></i>Editar</button><button type="button" class="btn btn-danger eliminar"><i class="fas fa-trash"></i>Eliminar</button></td>
+            <td>
+                <button type="button" class="btn btn-primary editar" data-indice=${index} data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit"></i>Editar</button>
+                <button type="button" class="btn btn-danger eliminar" data-indice=${index}><i class="fas fa-trash"></i>Eliminar</button>
+            </td>
         <tr> `
         ).join("");
 
@@ -49,6 +56,17 @@ async function listar(){
     }
 }
 
+async function consultar(indice){
+    const urlconsulta =  `${url}/${indice}`;
+    const respuesta = await fetch(urlconsulta, {node:"cors"});
+    const veterinariaServer = await respuesta.json();
+    nombre.value  = veterinariaServer.nombre;
+    apellido.value = veterinariaServer.apellido;
+    documento.value = veterinariaServer.documento;
+    pais.value = veterinariaServer.pais;
+}
+
+
 function eliminar(index) {
     const urlEnvio = `${url}/${index}`;
     return async function clickEnEliminar() {
@@ -68,10 +86,13 @@ function eliminar(index) {
 }
 
 function resetModal(){
-    
+    nombre.value = "";
+    apellido.value = "";
+    documento.value = "";
+    pais.value = "";
 }
 
 function editar(evento){
-    var indice = evento.target.dataset.indice;
-    console.log("indice editar",indice);
+    const indice = evento.target.dataset.indice;
+    consultar(indice);
 }

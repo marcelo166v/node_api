@@ -8,8 +8,8 @@ module.exports =  {
       veterinarias:
       [
         {nombre:"marcelo", apellido:"perez", pais: "Argentina", documento: "20304252228"},
-        {nombre:"marcelo", apellido:"villani", pais: "Argentina",documento: "20304252228"},
-        {nombre:"marcelo", apellido:"gonzalez",pais: "Argentina", documento: "20304252228"},
+        {nombre:"alfonso", apellido:"villani", pais: "Argentina",documento: "20304252228"},
+        {nombre:"alberto", apellido:"gonzalez",pais: "Argentina", documento: "20304252228"},
       ],
       duenos:
       [
