@@ -5,6 +5,7 @@ const url = "http://localhost:5080/duenos";
 const nombre = document.getElementById("nombre");
 const apellido = document.getElementById("apellido");
 const documento = document.getElementById("documento");
+const btnGuardar = document.getElementById("btn-guardar");
 
 listar();
 
@@ -61,6 +62,44 @@ async function consultar(indice){
     documento.value = duenoServer.documento;
 }
 
+async function enviarDatos(evento){
+    try
+    {
+        // Valido form con bootstrap
+        evento.preventDefault();
+        if (!form.checkValidity()) {
+            evento.preventDefault()
+            evento.stopPropagation()
+            form.classList.add('was-validated')
+            return false;
+        }
+        
+        const dueno ={
+            apellido: apellido.value,
+            nombre: nombre.value,
+            documento: documento.value,
+        }  
+        const accion = "agregar";
+        let urlEnvio = url;
+        let method = (accion == "agregar" ? "POST" : "PUT");
+        
+        const respuesta = await fetch(urlEnvio, {
+            method: method,
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(dueno)
+        });
+        if (respuesta.ok) {
+            listar();
+            resetModal();
+        }
+    } catch (error) {
+        console.log({ error });
+        $(".alert").show();
+    }
+};
+
 function eliminar(index) {
     const urlEnvio = `${url}/${index}`;
     return async function clickEnEliminar() {
@@ -87,3 +126,5 @@ function editar(evento){
     var indice = evento.target.dataset.indice;
     consultar(indice);
 }
+
+btnGuardar.onclick = enviarDatos;
