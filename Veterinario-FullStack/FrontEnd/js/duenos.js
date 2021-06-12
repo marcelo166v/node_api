@@ -1,7 +1,10 @@
 
 let duenos = [];
-const bodyDuenos = $("bodyDuenos"); 
+const bodyDuenos = document.getElementById("bodyDuenos"); 
 const url = "http://localhost:5080/duenos";
+const nombre = document.getElementById("nombre");
+const apellido = document.getElementById("apellido");
+const documento = document.getElementById("documento");
 
 listar();
 
@@ -21,13 +24,13 @@ async function listar(){
             <td>${dueno.apellido}</td>
             <td>${dueno.documento}</td>
             <td>
-                <button type="button" class="btn btn-primary editar" data-indice=${index}><i class="fas fa-edit"></i>Editar</button>
+                <button type="button" class="btn btn-primary editar" data-indice=${index} data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit"></i>Editar</button>
                 <button type="button" class="btn btn-danger eliminar" data-indice=${index}><i class="fas fa-trash"></i>Eliminar</button>
             </td>
         <tr> `
         ).join("");
         
-        $("#bodyDuenos").append(htmlduenos);
+        bodyDuenos.innerHTML = htmlduenos;
 
         // Evento para editar
         Array.from(document.getElementsByClassName('editar')).forEach(
@@ -47,6 +50,15 @@ async function listar(){
     catch(error){
         throw error;
     }
+}
+
+async function consultar(indice){
+    const urlconsulta =  `${url}/${indice}`;
+    const respuesta = await fetch(urlconsulta, {node:"cors"});
+    const duenoServer = await respuesta.json();
+    nombre.value  = duenoServer.nombre;
+    apellido.value = duenoServer.apellido;
+    documento.value = duenoServer.documento;
 }
 
 function eliminar(index) {
@@ -73,5 +85,5 @@ function resetModal(){
 
 function editar(evento){
     var indice = evento.target.dataset.indice;
-    console.log("indice editar",indice);
+    consultar(indice);
 }
