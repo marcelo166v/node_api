@@ -20,7 +20,7 @@ module.exports = {
     noEncontrada: (data,callback) => {
       callback(404, {mesaje: 'no encontrada'})
     },
-    consultas: consultas(recursos.consultas),
+    consultas: consultas(recursos),
     noEncontrada: (data,callback) => {
       callback(404, {mesaje: 'no encontrada'})
     }

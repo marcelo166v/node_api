@@ -17,6 +17,11 @@ app.get('/mascotas', (req, res) => {
     res.status(200).json(mascotas); // Codigo OK
 })
 
+app.post('/mascotas', (req, res) => {
+    
+    res.status(200).json(mascotas); // Codigo OK
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

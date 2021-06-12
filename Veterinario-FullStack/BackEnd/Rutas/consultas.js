@@ -1,11 +1,14 @@
-module.exports = function consultasHandler(consultas){
+module.exports = function consultasHandler({consultas,mascotas,veterinarias}){
     return {
         GET: (data,callback) => { // Handler
          if(typeof(data.indice) !== "undefined"){
              callback(200,consultas[data.indice]);
          }
          else{
-             callback(200, consultas);
+             const consultasConRelaciones = consultas.map((consulta,index) => (
+                {...consulta,mascota: mascotas[consulta.mascota],veterinaria: veterinarias[consulta.veterinaria]}
+             ));
+             callback(200, consultasConRelaciones);
          }
        },
        POST: (data,callback) => { // Handler
