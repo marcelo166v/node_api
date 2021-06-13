@@ -1,5 +1,5 @@
 import './App.css';
-import Mascotas from './Mascotas';
+import Pagina from './Pagina';
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Mascotas />
+    <Pagina />
   );
 }
 

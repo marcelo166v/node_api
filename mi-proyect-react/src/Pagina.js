@@ -1,10 +1,11 @@
 import React from 'react';
+import Nav from './Nav';
 
-function Mascotas() {
+function Pagina() {
 return (
 <div className="container">
-    <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
-    <div className="container-fluid">
+    {/* <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+      <div className="container-fluid">
         <a className="navbar-brand" href="/Veterinario-FullStack/FrontEnd/index.html">Mascotas</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -26,7 +27,10 @@ return (
           </span>
         </div>
       </div>
-    </nav>
+    </nav> */}
+
+    <Nav></Nav>
+    
     <div className="mt-2 mb-2"> 
         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo</button>
     </div>
@@ -51,5 +55,5 @@ return (
 );
 }
 
-export default Mascotas; 
+export default Pagina; 
  
