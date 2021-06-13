@@ -3,7 +3,7 @@
 let mascotas = [];
 const bodyMascotas = document.getElementById("bodyMascotas");
 const form = document.getElementById("form");
-const tipo = document.getElementById("tipoMascota");
+const tipo = document.getElementById("mascota");
 const nombre = document.getElementById("nombre");
 const dueno = document.getElementById("dueno");
 const btnGuardar = document.getElementById("btn-guardar");
@@ -11,6 +11,8 @@ const modal = document.getElementById("exampleModal");
 const url = "http://localhost:5080/mascotas";
 
 listar();
+
+listarDuenos();
 
 async function listar(){
     
@@ -26,9 +28,9 @@ async function listar(){
             <td>${index}</td>
             <td>${mascota.tipo}</td>
             <td>${mascota.nombre}</td>
-            <td>${mascota.dueno}</td>
+            <td>${mascota.dueno.nombre}</td>
             <td>
-                <button type="button" class="btn btn-primary editar" data-indice=${index}><i class="fas fa-edit"></i>Editar</button>
+                <button type="button" class="btn btn-primary editar" data-indice=${index} data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit"></i>Editar</button>
                 <button type="button" class="btn btn-danger eliminar" data-indice=${index}><i class="fas fa-trash"></i>Eliminar</button>
             </td>
         </tr>`
@@ -53,6 +55,37 @@ async function listar(){
     catch(error){
         throw error;
     }
+}
+
+async function listarDuenos(){
+    
+    try
+    {
+        const respuesta = await fetch('http://localhost:5080/duenos', {node:"cors"});
+        const duenosServer = await respuesta.json();
+        if(Array.isArray(duenosServer) && duenosServer.length > 0){
+            duenos = duenosServer;
+        }
+        
+        const htmlduenos = duenos.map((dueno,index) => `
+            <option value=${index}>${dueno.nombre}</option>  
+         `
+        ).join("");
+        
+        dueno.innerHTML = htmlduenos;
+    }
+    catch(error){
+        throw error;
+    }
+}
+
+async function consultar(indice){
+    const urlconsulta =  `${url}/${indice}`;
+    const respuesta = await fetch(urlconsulta, {node:"cors"});
+    const mascotaServer = await respuesta.json();
+    nombre.value = mascotaServer.nombre;
+    dueno.value = mascotaServer.dueno;
+    tipo.value = mascotaServer.tipo;
 }
 
 function eliminar(index) {
@@ -81,7 +114,8 @@ function resetModal(){
 
 function editar(evento){
     var indice = evento.target.dataset.indice;
-    console.log("indice editar",indice);
+    // Puedo usar el metodo consultar mandado el indice o puedo leerlo de recursos
+    consultar(indice);
 }
 
 async function enviarDatos(evento){

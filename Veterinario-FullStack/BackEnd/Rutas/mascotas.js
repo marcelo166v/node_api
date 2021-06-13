@@ -1,12 +1,17 @@
 
-module.exports = function mascotasHandler(mascotas){
+module.exports = function mascotasHandler({mascotas,duenos}){
     return {
         GET: (data,callback) => { // Handler
          if(typeof(data.indice) !== "undefined"){
              callback(200,mascotas[data.indice]);
          }
          else{
-             callback(200, mascotas);
+            const mascotasConRelaciones = mascotas.map((mascota,index) => (
+                {...mascota,
+                    dueno: duenos[mascota.dueno],
+                }
+             ));
+             callback(200, mascotasConRelaciones);
          }
        },
        POST: (data,callback) => { // Handler

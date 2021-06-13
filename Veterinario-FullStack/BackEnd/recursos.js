@@ -1,9 +1,9 @@
 module.exports =  {
     mascotas:
       [
-        {tipo:"perro", nombre:"firulais 1",dueno: "marcelo"},
-        {tipo:"perro", nombre:"firulais 2",dueno: "marcelo"},
-        {tipo:"perro", nombre:"firulais 3",dueno: "marcelo"},
+        {tipo:"perro", nombre:"firulais 1",dueno: "0"},
+        {tipo:"perro", nombre:"firulais 2",dueno: "1"},
+        {tipo:"perro", nombre:"firulais 3",dueno: "0"},
       ],
       veterinarias:
       [
@@ -29,6 +29,16 @@ module.exports =  {
           diagnostico: '',
         },
        
+      ],
+      paises:  [
+        {nombre:"argentina"},
+        {nombre:"brasil"},
+        {nombre:"japon"},
+      ],
+      tipoMascota:  [
+        {nombre:"gato"},
+        {nombre:"perro"},
+        {nombre:"tortuga"},
       ],
 
   };
