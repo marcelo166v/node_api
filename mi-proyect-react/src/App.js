@@ -20,7 +20,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Pagina />
+    <Pagina titulo="mascotas"/>
   );
 }
 
