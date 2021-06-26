@@ -4,7 +4,7 @@ import Tabla from './Componentes/Tabla/index';
 import Modal from './Componentes/Modal/index';
 import ActionsMenu from './Componentes/ActionsMenu';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {listarEntidad} from './servicio';
+import {listarEntidad,crearEntidad} from './servicio';
 
 // Class compoenent
 class Pagina extends Component {
@@ -28,6 +28,17 @@ class Pagina extends Component {
   listar = async() =>{
     const entidades = await listarEntidad('mascotas');
     this.setState({entidades});
+  }
+
+  crear = async() =>{
+    const object ={
+      tipo:"gato", 
+      nombre:"rocky",
+      dueno: "0",
+    }    
+    const ok = await crearEntidad('mascotas',object);
+    if(ok)
+      this.listar();
   }
 
   componentWillMount(){
