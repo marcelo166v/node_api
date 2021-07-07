@@ -5,6 +5,7 @@ import Modal from './Componentes/Modal/index';
 import ActionsMenu from './Componentes/ActionsMenu';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {listarEntidad,crearEntidad} from './servicio';
+import ModalExample from './Componentes/Modal/index';
 
 // Class compoenent
 class Pagina extends Component {
@@ -14,6 +15,8 @@ class Pagina extends Component {
     this.state = {
       mostrarModal: false,
       entidades: [],
+      duenos: [],
+      tipoMascota:[],
     }
   }
 
@@ -27,7 +30,15 @@ class Pagina extends Component {
 
   listar = async() =>{
     const entidades = await listarEntidad('mascotas');
-    this.setState({entidades});
+    const duenos = await listarEntidad({entidad:'duenos'});
+    const tipoMascota = [ {nombre:"gato"},
+      {nombre:"perro"},
+      {nombre:"tortuga"}
+    ];
+    this.setState({entidades : entidades})
+    this.setState({duenos: duenos});
+    this.setState({tipoMascota: tipoMascota});
+   
   }
 
   crear = async() =>{
@@ -67,7 +78,7 @@ class Pagina extends Component {
           
           <Tabla entidades={this.state.entidades}></Tabla>
     
-          <Modal show={this.state.mostrarModal} modalClose={this.modalClose}></Modal>
+          <ModalExample show={this.state.mostrarModal} duenos={this.state.duenos} tipoMascota={this.state.tipoMascota} modalClose={this.modalClose}></ModalExample>
       </div>
     );
 

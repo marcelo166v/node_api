@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button'
+import Selector from '../Select/index';
 
 function ModalExample(props) {
-
+    
     return(
         // <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         //     <div className="modal-dialog">
@@ -56,11 +57,12 @@ function ModalExample(props) {
             <Modal.Body>
                 <div className="mb-3">
                     <label className="form-label">Tipo</label>
-                        <select className="form-select" id="mascota">
+                    <Selector nombreCampo="tipo de mascota" opciones={props.tipoMascota.map((item) => ({ value: item.nombre, label: item.nombre }))}  />
+                        {/* <select className="form-select" id="mascota">
                             <option>Perro</option>
                             <option>Gato</option>
                             <option>Tortuga</option>
-                        </select>
+                        </select> */}
                 </div>
                 <div className="mb-3">
                     <label className="form-label" >Nombre</label>
@@ -68,8 +70,11 @@ function ModalExample(props) {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Dueño</label>
-                    <select className="form-select" id="dueno">
-                    </select>
+                    <Selector nombreCampo="dueño" opciones={props.duenos.map((item) => ({ value: item.nombre, label: item.nombre }))} />
+                    
+                    
+                    {/* <select className="form-select" id="dueno">
+                    </select> */}
                 </div>
             </Modal.Body>
             <Modal.Footer>
